@@ -1,6 +1,6 @@
 ## Docker Container Project
 
-###### This Backend Script uses a Docker Container that automates , download and process the several CSV files as a result  from a Azure Data Factory flow for the uploading to a AWS S3 Bucket
+###### This Backend Script uses a Docker Container that automates , download and process several CSV files as a result  from a Azure Data Factory flow for data uploading to a AWS S3 Bucket
 
 
 ## Main Considerations

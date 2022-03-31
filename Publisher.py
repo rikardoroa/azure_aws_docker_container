@@ -1,17 +1,21 @@
+#script by rikardoroa
+#Just python it!
 import pika
 from Azure_blobs_download import *
 from pika.exceptions import AMQPConnectionError
 
 
 class Rabbitmq:
-
+    #connection atritube
     pika_connector = pika.ConnectionParameters(host='localhost')
 
+    #init connection
     def __init__(self, pika_connector=pika_connector):
         self.pika_connector = pika_connector
 
-
+    
     def declare_queue(self, queue_name):
+        #connecting to queue and publishing the data
         connection = pika.BlockingConnection(self.pika_connector)
         channel = connection.channel()
         try:

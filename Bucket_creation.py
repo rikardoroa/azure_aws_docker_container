@@ -1,3 +1,5 @@
+#script by rikardoroa
+#Just python it!
 import boto3
 from Azure_blobs_download import *
 from dotenv import load_dotenv

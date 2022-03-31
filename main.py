@@ -1,3 +1,5 @@
+#script by rikardoroa
+#Just python it!
 from flask import Flask, jsonify
 from Azure_blobs_download import datasets_microservice
 from Bucket_creation import AWSBucket
@@ -8,6 +10,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
+
+#calling all the classes
 consumer = datasets_microservice()
 consumer_bucket = AWSBucket()
 publish_queue = Rabbitmq()
@@ -31,7 +35,7 @@ def get_ready():
 
 if __name__ == '__main__':
     try:
-        # consumer.setup()
+        #running all functions
         consumer.run_download_azure_blobs()
         consumer_bucket.run_bucket_creation_policy()
         publish_queue.run_publish_queue()

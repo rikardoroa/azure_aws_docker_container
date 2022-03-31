@@ -83,9 +83,11 @@ class BasicMessageReceiver(Rabbitmq, AWSBucket):
 
 
 def callback(ch, method, properties, body):
-
-    ch.basic_ack(delivery_tag=method.delivery_tag)
-    print("All messages consumed")
+    try:
+        ch.basic_ack(delivery_tag=method.delivery_tag)
+        print("All messages consumed")
+    except KeyboardInterrupt:
+            print("You are exiting the program...")
 
 
 

@@ -31,7 +31,6 @@
 
 
 ###### Enjoy!!
-# Just Python it!
 
 # Just Python it!!!
 

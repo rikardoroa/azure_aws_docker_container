@@ -3,7 +3,9 @@ from Azure_blobs_download import datasets_microservice
 from Bucket_creation import AWSBucket
 from Publisher import Rabbitmq
 from Consumer import BasicMessageReceiver
+from dotenv import load_dotenv
 
+load_dotenv()
 
 app = Flask(__name__)
 consumer = datasets_microservice()

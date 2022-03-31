@@ -1,19 +1,20 @@
 ## Docker Container Project
 
-###### This Backend Script uses a Docker Container that automates , download and process the several CSV files as a result  from a Azure Data Factory flow for the uploading to a AWS S3 Bucket
+###### This Backend Script uses a Docker Container that automates , download and process several CSV files as a result  from a Azure Data Factory flow for data uploading to a AWS S3 Bucket
 
 
 ## Main Considerations
 * previous installation of a recent version of Python (Stable version)
 * previous installation of Docker Desktop (Recent Version)
 * previous installation of rabbitmq
-* previous Knowlegde of Python  programming and docker main configuration
+* previous Knowlegde of Python programming and docker main configuration
 
 
 ## steps for executing this script:
 
-* in the CLI of docker write this command to process a recent image of rabbitmq: docker-compose up -d
-* to perform a connection between the host and docker write this in CLI : docker run --rm -it --network=host your_container_name
+* in the CLI of docker write this command to process a recent image of rabbitmq: **_docker-compose up -d_**
+* to Build the image of this project you need to run in CLI this command: **_docker build -t azure_aws_app ._**
+* to perform a connection between the host and this docker image write this in CLI : **_docker run --rm -it --network=host azure_aws_app_**
 * for test and debugging a truly recommend use Visual studio Code or Pycharm
 
 ## Configuring Enviroment variables:
@@ -30,5 +31,10 @@
 
 
 ###### Enjoy!!
+
+# Just Python it!!!
+
+
+
 
 

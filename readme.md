@@ -8,6 +8,8 @@
 * previous installation of Docker Desktop (Recent Version)
 * previous installation of rabbitmq
 * previous Knowlegde of Python programming and docker main configuration
+* Do not alter requiremets.txt
+* if you share you keys you will compromise your aws and azure accounts.
 
 
 ## steps for executing this script:

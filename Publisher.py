@@ -1,27 +1,26 @@
-#script by rikardoroa
-#Just python it!
 import pika
 from Azure_blobs_download import *
 from pika.exceptions import AMQPConnectionError
 
 
 class Rabbitmq:
-    #connection atritube
+    # pika connector attribute
     pika_connector = pika.ConnectionParameters(host='localhost')
 
-    #init connection
+    # init var and attribute
     def __init__(self, pika_connector=pika_connector):
         self.pika_connector = pika_connector
 
-    
+
     def declare_queue(self, queue_name):
-        #connecting to queue and publishing the data
+        #init queue connection an channel
         connection = pika.BlockingConnection(self.pika_connector)
         channel = connection.channel()
         try:
             print(f"Trying to declare queue({queue_name})...")
             channel.queue_declare(queue=queue_name)
             data = datasets_microservice.read_data_from_path()
+            # sending the data to the queue
             for index, item in enumerate(data):
                 message = pd.Series(data[index]).to_json(orient='records')
                 channel.basic_publish(exchange="", routing_key="channel", body=message)
@@ -36,3 +35,4 @@ class Rabbitmq:
         thread_one.start()
         thread_one.join()
         return thread_one
+

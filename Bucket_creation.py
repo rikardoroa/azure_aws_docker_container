@@ -1,7 +1,6 @@
-#script by rikardoroa
-#Just python it!
 import boto3
 from Azure_blobs_download import *
+import os
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -36,11 +35,11 @@ class AWSBucket:
         s3n = session.resource('s3', region_name=self.region)
         try:
             s3.create_bucket(Bucket=self.bucket, CreateBucketConfiguration={'LocationConstraint': self.region})
+            print('Bucket Successfully created')
         except s3n.meta.client.exceptions.BucketAlreadyOwnedByYou:
             s3n.Bucket(name=self.bucket)
             print('Bucket already exist')
         self.session = session
-
 
     def bucket_policy(self):
         # init vars
@@ -59,9 +58,11 @@ class AWSBucket:
                 }
             ]
         }
+
         # applying policy
         policy_string = json.dumps(bucket_policy)
         policy = s3.put_bucket_policy(Bucket=self.bucket, Policy=policy_string)
+
         # public access restriction policy
         response_public = s3.put_public_access_block(
             Bucket=self.bucket,
@@ -73,9 +74,7 @@ class AWSBucket:
             },
         )
         print('Applying Bucket Policy')
-        return policy, response_public
-
-
+        return response_public, policy
 
     def run_bucket_creation_policy(self):
         # Running all functions in the main module

@@ -1,6 +1,3 @@
-#script by rikardoroa
-#Just python it!
-
 import sys
 from Publisher import Rabbitmq
 from Bucket_creation import *
@@ -13,7 +10,7 @@ from threading import Thread
 import threading
 
 class BasicMessageReceiver(Rabbitmq, AWSBucket):
-    #init variables
+
     def __init__(self, pika_connector=pika.ConnectionParameters()):
         Rabbitmq.__init__(self, Rabbitmq.pika_connector)
         self.pika_connector = Rabbitmq.pika_connector
@@ -30,18 +27,15 @@ class BasicMessageReceiver(Rabbitmq, AWSBucket):
 
 
     def callback_(self):
-        #creating connection and channel
         connection = pika.BlockingConnection(self.pika_connector)
         channel = connection.channel()
         try:
-            #declaring parameter for queue, and init bucket
             msj = channel.queue_declare("channel")
             new_data = []
             s3 = self.session.client('s3')
             files = ['deaths.json', 'hadmissions.json', 'test.json']
             if msj.method.message_count >= 0:
                 try:
-                    #decoding body for queue consume and uploading to the bucket
                     print("Uploading files to the AWS S3 Bucket from Queue..to Exit press CTRL + C")
                     for method_frame, properties, body in channel.consume('channel'):
                         new_body = body.decode("utf8")
@@ -51,7 +45,7 @@ class BasicMessageReceiver(Rabbitmq, AWSBucket):
                             s3.put_object(Bucket=self.bucket, Body=new_data[index], Key=files[index])
                         print("Wrinting a file to the S3 Bucket please wait..")
 
-                        #consuming the queue and connecting to the host
+
                         if msj.method.message_count == len(new_data):
 
                             connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
@@ -63,20 +57,18 @@ class BasicMessageReceiver(Rabbitmq, AWSBucket):
                     print("connection lost with AWS Server, Please Check your Internet connection")
 
             else:
-            
                 print("No messages in queue..exiting")
                 self.channel.queue_delete("channel")
                 self.channel.close()
                 self.connection.close()
 
-        #exception
+
         except KeyboardInterrupt:
             channel.stop_consuming()
             channel.queue_delete("channel")
             channel.close()
             connection.close()
             print("You Press CTRL + C to exit..")
-
 
     def run_consume_queue(self):
         # Running all functions in the main module
@@ -94,7 +86,8 @@ def callback(ch, method, properties, body):
         ch.basic_ack(delivery_tag=method.delivery_tag)
         print("All messages consumed")
     except KeyboardInterrupt:
-            print("You are exiting the program...")
+        print("You are exiting the program...")
+
 
 
 

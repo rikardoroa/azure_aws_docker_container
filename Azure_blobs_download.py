@@ -14,7 +14,7 @@ load_dotenv()
 
 
 class datasets_microservice:
-     # regex pattern
+    # regex pattern
     pattern = r'[a-z]{1,20}.csv'
     # credentials
     key = os.getenv('Key_Blob')
@@ -23,7 +23,6 @@ class datasets_microservice:
     contenedor = os.getenv('Container')
     input_container = os.getenv('Input_container')
     conn = os.getenv('conn_string')
-
 
     # var initialization
     def __init__(self, pattern=pattern, key=key,
@@ -60,11 +59,13 @@ class datasets_microservice:
 
     @staticmethod
     def read_data_from_path():
+        #processing al data for uploading to the queue
         path = os.path.abspath("*.csv")
         csv_files = []
         cols = []
         payload = []
         [csv_files.append(files) for files in glob.glob(path)]
+        # do some transformations for encoding data
         for csv in csv_files:
             read_csv_file = pd.read_csv(csv, encoding="latin1", sep="\t")
             for col in read_csv_file.columns:
@@ -78,10 +79,12 @@ class datasets_microservice:
             json_data = my_data.apply(lambda row: json.loads(row.to_json()), axis=1)
             payload.append(json_data)
         array_payload = np.asarray(payload, dtype=object)
+        #returning byte array to launch in queue
         return array_payload
 
 
     def run_download_azure_blobs(self):
+        #running al functions
         thread_one = threading.Thread(target=self.get_blob_from_azure)
         thread_one.start()
         thread_one.join()
@@ -89,3 +92,4 @@ class datasets_microservice:
         thread_two.start()
         thread_two.join()
         return thread_one, thread_two
+

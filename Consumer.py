@@ -1,3 +1,5 @@
+# Script by rikardoroa
+# just Python it!
 import sys
 from Publisher import Rabbitmq
 from Bucket_creation import *

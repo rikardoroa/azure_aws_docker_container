@@ -1,3 +1,5 @@
+# Script by rikardoroa
+# just Python it!
 import pika
 from Azure_blobs_download import *
 from pika.exceptions import AMQPConnectionError

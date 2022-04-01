@@ -1,3 +1,5 @@
+# Script by rikardoroa
+# just Python it!
 import boto3
 from Azure_blobs_download import *
 import os

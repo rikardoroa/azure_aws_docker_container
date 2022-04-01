@@ -31,6 +31,7 @@
 * for the use of Rabbit as a Python Microservice I truly recommend this tutorial: https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/amazon-mq-rabbitmq-pika.html
 * I share this python tutorial for the use of the boto3 library for Bucket s3 processing : https://buildmedia.readthedocs.org/media/pdf/boto3/latest/boto3.pdf
 
+## this project also is in my gitlab repo: https://gitlab.com/rikardoroa/azure_aws_docker_container
 
 # Enjoy!!
 

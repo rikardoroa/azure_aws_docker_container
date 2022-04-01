@@ -28,7 +28,7 @@
 
 ## Basic tutorial for using Rabbit and boto3:
 
-* for use Rabbit as a Python Microservice I truly recommend this tutorial: https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/amazon-mq-rabbitmq-pika.html
+* for the use Rabbit as a Python Microservice I truly recommend this tutorial: https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/amazon-mq-rabbitmq-pika.html
 * I share this python tutorial for the use of the boto3 library for Bucket s3 processing : https://buildmedia.readthedocs.org/media/pdf/boto3/latest/boto3.pdf
 
 

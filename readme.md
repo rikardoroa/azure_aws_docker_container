@@ -32,6 +32,10 @@
 * I share this python tutorial for the use of the boto3 library for Bucket s3 processing : https://buildmedia.readthedocs.org/media/pdf/boto3/latest/boto3.pdf
 * this project also is in my gitlab repo: https://gitlab.com/rikardoroa/azure_aws_docker_container
 
+## Infraestructure of this project:
+
+* you can view the Design of this project infraestructure here : https://imgur.com/a/eFTFysP
+
 # Enjoy!!
 
 # Just Python it!!!
